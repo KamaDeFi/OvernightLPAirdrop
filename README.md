@@ -18,7 +18,7 @@ python3 airdrop.py
 
 This script will:
 
-1. Approve the simple Airdrop contract that I created (https://bscscan.com/address/0x46Ea118AD231Ba378c32baf32cB931D3206ec601) to spend the LP tokens.
+1. Approve the simple Airdrop contract that I created (https://bscscan.com/address/0x46Ea118AD231Ba378c32baf32cB931D3206ec601) to spend the LP tokens
 2. Read the airdrop information from `OvernightLPAirdrop.csv` (https://docs.google.com/spreadsheets/d/1tLZ0G7K6sXj9FibwqZANIF8WJ_OCxVqDI_D-nSVWo28/edit?usp=sharing)
 3. Airdrop the LP tokens, split over 4 different txns, each airdropping to 100 addresses (except the 4th txn which airdrops to the remaining 122 addresses)
 
