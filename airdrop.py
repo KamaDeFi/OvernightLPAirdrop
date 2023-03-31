@@ -28,6 +28,8 @@ LP_TOKEN_CONTRACT_ADDRESS = '0xaCC31d29022C8Eb2683597bF4c07De228Ed9EA07'
 AIRDROP_CONTRACT_ADDRESS = '0x46Ea118AD231Ba378c32baf32cB931D3206ec601'
 APPROVE_ABI = '[{"stateMutability":"nonpayable","type":"function","name":"approve","inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"outputs":[{"name":"","type":"bool"}]}]'
 AIRDROP_ABI = '[{"inputs":[{"internalType":"address","name":"token","type":"address"},{"internalType":"address[]","name":"addresses","type":"address[]"},{"internalType":"uint256[]","name":"amounts","type":"uint256[]"}],"name":"airdrop","outputs":[],"stateMutability":"nonpayable","type":"function"}]'
+LP_TOKEN_CONTRACT = w3.eth.contract(address=LP_TOKEN_CONTRACT_ADDRESS, abi=APPROVE_ABI)
+AIRDROP_CONTRACT = w3.eth.contract(address=AIRDROP_CONTRACT_ADDRESS, abi=AIRDROP_ABI)
 MAX_APPROVAL = 115792089237316195423570985008687907853269984665640564039457584007913129639935
 
 ##########################################################################
@@ -38,8 +40,7 @@ MAX_APPROVAL = 11579208923731619542357098500868790785326998466564056403945758400
 #                                                                        #
 ##########################################################################
 
-lp_token_contract = w3.eth.contract(address=LP_TOKEN_CONTRACT_ADDRESS, abi=APPROVE_ABI)
-approve_txn = lp_token_contract.functions.approve(AIRDROP_CONTRACT_ADDRESS, MAX_APPROVAL).build_transaction(
+approve_txn = LP_TOKEN_CONTRACT.functions.approve(AIRDROP_CONTRACT_ADDRESS, MAX_APPROVAL).build_transaction(
     {
         'chainId': CHAIN_ID,
         'from': LP_TOKEN_AIRDROPPER_ADDRESS,
@@ -78,7 +79,6 @@ with open('OvernightLPAirdrop.csv', 'r') as f:
 #                                                                            #
 ##############################################################################
 
-airdrop_contract = w3.eth.contract(address=AIRDROP_CONTRACT_ADDRESS, abi=AIRDROP_ABI)
 addresses = 100  # Each txn airdrops to 100 addresses
 
 # Split the airdrop over 4 transactions
@@ -88,7 +88,7 @@ for i in range(4):
     infos = airdrop_info[i * 100:(i * 100) + addresses]
     addresses_list = [info[0] for info in infos]
     amounts_list = [info[1] for info in infos]
-    airdrop_txn = airdrop_contract.functions.airdrop(LP_TOKEN_CONTRACT_ADDRESS, addresses_list, amounts_list).build_transaction(
+    airdrop_txn = AIRDROP_CONTRACT.functions.airdrop(LP_TOKEN_CONTRACT_ADDRESS, addresses_list, amounts_list).build_transaction(
         {
             'chainId': CHAIN_ID,
             'from': LP_TOKEN_AIRDROPPER_ADDRESS,
