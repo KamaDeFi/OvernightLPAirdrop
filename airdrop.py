@@ -47,7 +47,7 @@ approve_txn = lp_token_contract.functions.approve(AIRDROP_CONTRACT_ADDRESS, MAX_
         'gasPrice': w3.eth.generate_gas_price(),
     }
 )
-approve_txn.update({'gas' : w3.eth.estimate_gas(approve_txn)})
+approve_txn.update({'gas': w3.eth.estimate_gas(approve_txn)})
 approve_txn_signed = w3.eth.account.sign_transaction(
     approve_txn,
     f'0x{LP_TOKEN_AIRDROPPER_PRIVATE_KEY}',
@@ -95,7 +95,7 @@ for i in range(4):
             'gasPrice': w3.eth.generate_gas_price(),
         }
     )
-    airdrop_txn.update({'gas' : w3.eth.estimate_gas(airdrop_txn)})
+    airdrop_txn.update({'gas': w3.eth.estimate_gas(airdrop_txn)})
     airdrop_txn_signed = w3.eth.account.sign_transaction(
         airdrop_txn,
         f'0x{LP_TOKEN_AIRDROPPER_PRIVATE_KEY}',
