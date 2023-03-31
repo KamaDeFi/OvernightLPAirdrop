@@ -10,7 +10,8 @@ w3.eth.set_gas_price_strategy(rpc_gas_price_strategy)
 # IMPORTANT: Please fill in these fields:                                                                             #
 #                                                                                                                     #
 # LP_TOKEN_AIRDROPPER_ADDRESS: Address that holds the LP tokens and will airdrop them.                                #
-# LP_TOKEN_AIRDROPPER_PRIVATE_KEY: Private key of the above address as copied from MetaMask **without** a leading 0x. #                                                                                        #
+# LP_TOKEN_AIRDROPPER_PRIVATE_KEY: Private key of the above address as copied from MetaMask **without** a leading 0x, #
+# exactly as copied from Metamask                                                                                     #
 #                                                                                                                     #
 # IMPORTANT: Please make sure that the airdropping address that holds the LP tokens has enough BNB gas for the        #
 # airdrop (0.3 BNB to be safe), otherwise this script might fail half-way, which will require manual intervention     #
