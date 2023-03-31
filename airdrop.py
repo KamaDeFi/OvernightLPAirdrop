@@ -78,15 +78,16 @@ with open('OvernightLPAirdrop.csv', 'r') as f:
 #                                                                            #
 ##############################################################################
 
+airdrop_contract = w3.eth.contract(address=AIRDROP_CONTRACT_ADDRESS, abi=AIRDROP_ABI)
+addresses = 100  # Each txn airdrops to 100 addresses
+
 # Split the airdrop over 4 transactions
 for i in range(4):
-    addresses = 100  # Each txn airdrops to 100 addresses
     if i == 3:
         addresses = 122  # Except the final txn which airdrops to 122 addresses
     infos = airdrop_info[i * 100:(i * 100) + addresses]
     addresses_list = [info[0] for info in infos]
     amounts_list = [info[1] for info in infos]
-    airdrop_contract = w3.eth.contract(address=AIRDROP_CONTRACT_ADDRESS, abi=AIRDROP_ABI)
     airdrop_txn = airdrop_contract.functions.airdrop(LP_TOKEN_CONTRACT_ADDRESS, addresses_list, amounts_list).build_transaction(
         {
             'chainId': CHAIN_ID,
