@@ -10,7 +10,7 @@ Then modify `airdrop.py` as per the instructions at the top of that file to add 
 
 **IMPORTANT: Make sure that the address that holds the LP tokens which will perform the airdrop has enough BNB gas (0.3 BNB to be safe, but it will cost less than that). If there is not enough BNB, the script might fail half-way, which will require manual intervention changing the code and re-running.**
 
-Then run the aidrop script:
+Then run the airdrop script:
 
 ```shell
 python3 airdrop.py
